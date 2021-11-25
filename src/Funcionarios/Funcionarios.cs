@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Projeto_2___AED_1.src.Funcionarios
 {
-    abstract class Funcionarios
+    abstract class Funcionario
     {
         private string nome { get; set; }
         private long cpf { get; set; }
         private double Salario { get; set; }
         public long matricula { get; set; }
         
-        public Funcionarios(string fName, long fCPF, double fSalario, bool register = false)
+        public Funcionario(string fName, long fCPF, double fSalario, bool register = false)
         {
             this.nome = fName;
             this.cpf = fCPF;

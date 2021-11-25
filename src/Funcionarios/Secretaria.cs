@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Projeto_2___AED_1.src.Funcionarios
 {
-    class Secretaria:Funcionarios
+    class Secretaria:Funcionario
     {
         public Secretaria(string fName, long fCPF, double fSalario, bool register = false) : base(fName, fCPF, fSalario, register) 
         {

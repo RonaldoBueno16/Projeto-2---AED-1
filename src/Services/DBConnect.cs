@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using MySql.Data.MySqlClient;
+using Projeto_2___AED_1.src.Funcionarios;
 
 namespace Projeto_2___AED_1.src.Services
 {
@@ -77,6 +79,33 @@ namespace Projeto_2___AED_1.src.Services
                 return id;
             }
             return -1;
+        }
+
+        public List<Funcionario> ListarMedicos()
+        {
+            List<Funcionario> listaDeRetorno = new List<Funcionario>();
+
+            //
+
+            if (this.OpenConnection())
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM funcionarios a INNER JOIN medicos b ON b.funcionarios_matricula=a.matricula", this.connection);
+                MySqlDataReader dtreader = cmd.ExecuteReader();
+
+                while(dtreader.Read())
+                {
+                    Console.WriteLine(dtreader["matricula"]);
+                    Console.WriteLine(dtreader["nome"]);
+                    Console.WriteLine(dtreader["cpf"]);
+                    Console.WriteLine(dtreader["salario"]);
+                    Console.WriteLine(dtreader["crm"]);
+                    Console.WriteLine(dtreader["funcionarios_matricula"]);
+                }
+
+                this.CloseConnection();
+            }
+
+            return listaDeRetorno;
         }
 
         public void Update(string query)

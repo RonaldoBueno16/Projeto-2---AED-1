@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Projeto_2___AED_1.src.Funcionarios
 {
-    class Medico:Funcionarios
+    class Medico:Funcionario
     {
         private int CRM;
 

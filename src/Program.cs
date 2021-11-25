@@ -1,6 +1,8 @@
 ﻿using Projeto_2___AED_1.src.Funcionarios;
 using System.Collections.Generic;
 using System;
+using Projeto_2___AED_1.src.Services;
+using MySql.Data.MySqlClient;
 
 namespace Projeto_2___AED_1
 {
@@ -8,8 +10,12 @@ namespace Projeto_2___AED_1
     {
         static void Main(string[] args)
         {
-            Funcionarios marilia = new Secretaria("Marilia", 14698511126, 6000, true);
-            Funcionarios anderson = new Medico("Cavalinho", 23211456963, 6000, 1663324, true);
+            Funcionario marilia = new Secretaria("Marilia", 14698511126, 6000, false);
+            Funcionario anderson = new Medico("Cavalinho", 23211456963, 6000, 1663324, false);
+
+            DBConnect connect = new DBConnect();
+
+            connect.ListarMedicos();
 
             ReturnERROR:
             Console.WriteLine("==========================================");
@@ -17,6 +23,7 @@ namespace Projeto_2___AED_1
             Console.WriteLine("==========================================\n");
             Console.WriteLine("1 - Entrar como secretária");
             Console.WriteLine("2 - Entrar como médico");
+            Console.WriteLine("3 - Entrar como administrador do sistema");
             Console.Write("\nDigite a opção desejada: ");
 
             string optionSTR = Console.ReadLine();
@@ -39,17 +46,15 @@ namespace Projeto_2___AED_1
                 case 2:
                     Console.WriteLine("Entrar como médico");
                     break;
+                case 3:
+                    Console.WriteLine("Entrar como administrador");
+                    break;
                 default:
                     Console.Clear();
                     goto ReturnERROR;
                     break;
             }
         }
-
-        /*private static List<Funcionarios>[] ListarFuncionarios()
-        {
-            
-        }*/
 
         private static void MenuSecretaria()
         {
