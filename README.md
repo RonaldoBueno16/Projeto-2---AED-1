@@ -48,9 +48,17 @@ consulta
 - [x] Medico e Secretaria herdam de Funcionarios.
 
 **Criamos também os metodos:**
+**Funcionarios:**  
+- [x] atualizarFuncionarios  
+- [x] RegisterFunc (Registra o funcionario no banco de dados)  
+- [x] getName()  
 
 
-- [] Aplicar desconto caso o paciente tenha plano de saude
+
+
+
+No sistema da clinica deverá aplicar um desconto fixo, de 25% na hora do pagamento da consulta, caso o cliente nao tenha plano de saude.
+Escritas de arquivos se o paciente vai querer atestado ou não
 
 ## Authors
 - [Ronaldo Bueno](https://github.com/RonaldoBueno16)
