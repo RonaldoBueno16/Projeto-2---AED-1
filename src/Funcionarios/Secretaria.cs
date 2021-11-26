@@ -9,11 +9,11 @@ namespace Projeto_2___AED_1.src.Funcionarios
 {
     class Secretaria:Funcionario
     {
-        public Secretaria(string fName, long fCPF, double fSalario, bool register = false) : base(fName, fCPF, fSalario, register) 
+        /*public Secretaria(string fName, long fCPF, double fSalario, bool register = false) : base(fName, fCPF, fSalario, register) 
         {
             if (register)
                 this.RegisterSecretaria();
-        }
+        }*/
 
         private void RegisterSecretaria()
         {

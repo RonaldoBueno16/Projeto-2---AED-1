@@ -81,25 +81,90 @@ namespace Projeto_2___AED_1.src.Services
             return -1;
         }
 
-        public List<Funcionario> ListarMedicos()
+        public List<Medico> CarregarMedicos()
         {
-            List<Funcionario> listaDeRetorno = new List<Funcionario>();
-
-            //
+            List<Medico> listaDeRetorno = new List<Medico>();
 
             if (this.OpenConnection())
             {
                 MySqlCommand cmd = new MySqlCommand("SELECT * FROM funcionarios a INNER JOIN medicos b ON b.funcionarios_matricula=a.matricula", this.connection);
                 MySqlDataReader dtreader = cmd.ExecuteReader();
 
+                int crm_medico;
+                long matricula;
+                string nome;
+                long cpf;
+                double salario;
+
+                Medico medico = new Medico();
                 while(dtreader.Read())
                 {
-                    Console.WriteLine(dtreader["matricula"]);
-                    Console.WriteLine(dtreader["nome"]);
-                    Console.WriteLine(dtreader["cpf"]);
-                    Console.WriteLine(dtreader["salario"]);
-                    Console.WriteLine(dtreader["crm"]);
-                    Console.WriteLine(dtreader["funcionarios_matricula"]);
+                    matricula = Convert.ToInt64(dtreader["matricula"]);
+                    nome = Convert.ToString(dtreader["nome"]);
+                    cpf = Convert.ToInt64(dtreader["cpf"]);
+                    salario = Convert.ToDouble(dtreader["salario"]);
+                    crm_medico = Convert.ToInt32(dtreader["crm"]);
+
+
+                    medico.AtualizarFuncionario(nome, cpf, salario, matricula);
+                    medico.CRM = crm_medico;
+                    listaDeRetorno.Add(medico);
+                }
+
+                this.CloseConnection();
+            }
+
+            return listaDeRetorno;
+        }
+        public List<Secretaria> CarregarSecretarias()
+        {
+            List<Secretaria> listaDeRetorno = new List<Secretaria>();
+
+            if(this.OpenConnection())
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM funcionarios a INNER JOIN secretarias b ON a.matricula = b.funcionarios_matricula", this.connection);
+                MySqlDataReader dtreader = cmd.ExecuteReader();
+
+                long matricula;
+                string nome;
+                long cpf;
+                double salario;
+                Secretaria secretaria = new Secretaria();
+                while (dtreader.Read())
+                {
+                    matricula = Convert.ToInt64(dtreader["matricula"]);
+                    nome = Convert.ToString(dtreader["nome"]);
+                    cpf = Convert.ToInt64(dtreader["cpf"]);
+                    salario = Convert.ToDouble(dtreader["salario"]);
+
+
+                    secretaria.AtualizarFuncionario(nome, cpf, salario, matricula);
+                    listaDeRetorno.Add(secretaria);
+                }
+
+                this.CloseConnection();
+            }
+
+            return listaDeRetorno; 
+        }
+
+        public List<Paciente> CarregarPacientes()
+        {
+            List<Paciente> listaDeRetorno = new List<Paciente>();
+
+            if (this.OpenConnection())
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM pacientes", this.connection);
+                MySqlDataReader dtreader = cmd.ExecuteReader();
+                
+                while (dtreader.Read())
+                {
+                    bool possui_plano = Convert.ToBoolean(dtreader["possui_plano"]);
+                    string data_nascimento = Convert.ToString(dtreader["data_nascimento"]);
+                    long cpf = Convert.ToInt64(dtreader["cpf"]);
+                    string nome = Convert.ToString(dtreader["nome"]);
+
+                    listaDeRetorno.Add(new Paciente(nome, cpf, data_nascimento, possui_plano));
                 }
 
                 this.CloseConnection();

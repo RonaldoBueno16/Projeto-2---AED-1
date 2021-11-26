@@ -9,13 +9,11 @@ namespace Projeto_2___AED_1.src.Funcionarios
 {
     class Medico:Funcionario
     {
-        private int CRM;
-
-        public Medico(string fName, long fCPF, double fSalario, int mCRM, bool register = false) : base(fName, fCPF, fSalario, register)
+        public int CRM { get; set; }
+        
+        public Medico(bool registrar = false)
         {
-            this.CRM = mCRM;
-
-            if (register)
+            if(registrar)
                 RegisterMedico();
         }
 

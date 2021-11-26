@@ -9,12 +9,12 @@ namespace Projeto_2___AED_1.src.Funcionarios
 {
     abstract class Funcionario
     {
+        public long matricula { get; set; }
         private string nome { get; set; }
         private long cpf { get; set; }
         private double Salario { get; set; }
-        public long matricula { get; set; }
         
-        public Funcionario(string fName, long fCPF, double fSalario, bool register = false)
+        /*public Funcionario(string fName, long fCPF, double fSalario, bool register = false)
         {
             this.nome = fName;
             this.cpf = fCPF;
@@ -22,6 +22,20 @@ namespace Projeto_2___AED_1.src.Funcionarios
 
             if(register)
                 this.RegisterFunc();
+        }*/
+
+        public Funcionario(bool register = false)
+        {
+            if (register)
+                RegisterFunc();
+        }
+
+        public void AtualizarFuncionario(string fName, long fCPF, double fSalario, long fmatricula)
+        {
+            this.nome = fName;
+            this.cpf = fCPF;
+            this.Salario = fSalario;
+            this.matricula = fmatricula;
         }
 
         public void RegisterFunc()
