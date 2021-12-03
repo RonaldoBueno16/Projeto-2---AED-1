@@ -54,6 +54,12 @@ consulta
 - [x] getName()  
 
 
+02/11 -
+**Demos continuidade ao projeto com os seguintes ajustes:**
+- [x] Alteramos e criamos alguns metodos das classes listadas acima.  
+- [x] Demos continuidade no progresso de cada classe já criada.  
+- [x] Fizemos um console que o usuario do programa entenda o sistema da clinica
+
 
 
 
