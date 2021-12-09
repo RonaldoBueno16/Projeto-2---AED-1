@@ -15,6 +15,11 @@
 
 
 
+# Banco de dados:   
+![image](https://user-images.githubusercontent.com/90154109/145490198-cdd95dd3-7d63-44a7-8e15-ddcec8592a60.png)    
+
+
+
 # Datas de entrega dos relatorios.
  
 20/11 -   
@@ -54,11 +59,29 @@ consulta
 - [x] getName()  
 
 
+02/11 -  
+**Demos continuidade ao projeto com os seguintes ajustes:**
+- [x] Alteramos e criamos alguns metodos das classes listadas acima.  
+- [x] Demos continuidade no progresso de cada classe já criada.  
+- [x] Fizemos um console que o usuario do programa entenda o sistema da clinica
+
+
+09/11 -   
+**Modificamos e adicionamos funcionalidade as classes:**  
+- [x] Secretaria;  Verifica a disponibilidade e faz o agendamento da consulta do cliente; Seleciona o medico.  
+- [x] RegisterPacient;  Registra, lista e informa o ID do paciente cadastrado.  
+- [x] Criamos a classe "Consultas" que lista e informa as consultas dos pacientes marcadas   
+- [x] Secretaria; Visualiza a agenda de consultas marcadas.  
+- [x] Classe 'Secretaria' finalizada    
+- [x] Classe 'Paciente' finalizada      
 
 
 
-No sistema da clinica deverá aplicar um desconto fixo, de 25% na hora do pagamento da consulta, caso o cliente nao tenha plano de saude.
-Escritas de arquivos se o paciente vai querer atestado ou não
+
+No sistema da clinica deverá aplicar um desconto fixo, de 25% na hora do pagamento da consulta, caso o cliente tenha plano de saude.  
+A Escritas de arquivos entra se o paciente vai querer atestado ou não
+
+
 
 ## Authors
 - [Ronaldo Bueno](https://github.com/RonaldoBueno16)
