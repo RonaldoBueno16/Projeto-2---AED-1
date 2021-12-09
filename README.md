@@ -63,8 +63,8 @@ consulta
 
 09/11 -   
 **Modificamos e adicionamos funcionalidade as classes:**  
-- [x] Secretaria; Verifica a disponibilidade e faz o agendamento da consulta do cliente; Seleciona o medico.  
-- [x] RegisterPacient; Registra, lista e informa o ID do paciente cadastrado.  
+- [x] Secretaria;  Verifica a disponibilidade e faz o agendamento da consulta do cliente; Seleciona o medico.  
+- [x] RegisterPacient;  Registra, lista e informa o ID do paciente cadastrado.  
 - [x]    
 
 
