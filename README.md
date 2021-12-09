@@ -54,7 +54,7 @@ consulta
 - [x] getName()  
 
 
-02/11 -
+02/11 -  
 **Demos continuidade ao projeto com os seguintes ajustes:**
 - [x] Alteramos e criamos alguns metodos das classes listadas acima.  
 - [x] Demos continuidade no progresso de cada classe já criada.  
@@ -63,8 +63,8 @@ consulta
 
 
 
-No sistema da clinica deverá aplicar um desconto fixo, de 25% na hora do pagamento da consulta, caso o cliente nao tenha plano de saude.  
-Escritas de arquivos se o paciente vai querer atestado ou não
+No sistema da clinica deverá aplicar um desconto fixo, de 25% na hora do pagamento da consulta, caso o cliente tenha plano de saude.  
+A Escritas de arquivos entra se o paciente vai querer atestado ou não
 
 ## Authors
 - [Ronaldo Bueno](https://github.com/RonaldoBueno16)
