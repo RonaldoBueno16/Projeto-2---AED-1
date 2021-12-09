@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
+using Projeto_2___AED_1.src.Consultas;
 using Projeto_2___AED_1.src.Funcionarios;
 
 namespace Projeto_2___AED_1.src.Services
@@ -96,15 +97,15 @@ namespace Projeto_2___AED_1.src.Services
                 long cpf;
                 double salario;
 
-                Medico medico = new Medico();
                 while(dtreader.Read())
                 {
+                    Medico medico = new Medico();
                     matricula = Convert.ToInt64(dtreader["matricula"]);
                     nome = Convert.ToString(dtreader["nome"]);
                     cpf = Convert.ToInt64(dtreader["cpf"]);
                     salario = Convert.ToDouble(dtreader["salario"]);
                     crm_medico = Convert.ToInt32(dtreader["crm"]);
-
+                    Console.WriteLine(nome);
 
                     medico.AtualizarFuncionario(nome, cpf, salario, matricula);
                     medico.CRM = crm_medico;
@@ -163,8 +164,11 @@ namespace Projeto_2___AED_1.src.Services
                     string data_nascimento = Convert.ToString(dtreader["data_nascimento"]);
                     long cpf = Convert.ToInt64(dtreader["cpf"]);
                     string nome = Convert.ToString(dtreader["nome"]);
+                    long matricula = Convert.ToInt64(dtreader["matricula"]);
 
-                    listaDeRetorno.Add(new Paciente(nome, cpf, data_nascimento, possui_plano));
+                    Paciente paciente = new Paciente(nome, cpf, data_nascimento, possui_plano);
+                    paciente.SetMatricula(matricula);
+                    listaDeRetorno.Add(paciente);
                 }
 
                 this.CloseConnection();

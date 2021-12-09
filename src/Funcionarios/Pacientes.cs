@@ -26,6 +26,16 @@ namespace Projeto_2___AED_1.src.Funcionarios
                 RegisterPaciente();
         }
 
+        public void SetMatricula(long new_Matricula)
+        {
+            this.matricula = new_Matricula;
+        }
+
+        public long GetID()
+        {
+            return this.matricula;
+        }
+
         public string GetNome()
         {
             return this.nome;
