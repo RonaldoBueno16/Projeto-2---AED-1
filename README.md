@@ -63,7 +63,7 @@ consulta
 
 
 
-No sistema da clinica deverá aplicar um desconto fixo, de 25% na hora do pagamento da consulta, caso o cliente nao tenha plano de saude.
+No sistema da clinica deverá aplicar um desconto fixo, de 25% na hora do pagamento da consulta, caso o cliente nao tenha plano de saude.  
 Escritas de arquivos se o paciente vai querer atestado ou não
 
 ## Authors
