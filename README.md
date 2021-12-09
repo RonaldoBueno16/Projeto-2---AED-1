@@ -15,7 +15,9 @@
 
 
 
-Em nosso projeto utilizamos o phpMyAdmin que é um banco de dados para registrar e salvar os dados.
+# Banco de dados:   
+Em nosso projeto utilizamos o phpMyAdmin para registrar e salvar os dados.    
+
 ![image](https://user-images.githubusercontent.com/90154109/145489845-ab7cc544-dc14-45ab-ad93-c3b7ca802354.png)    
 # Datas de entrega dos relatorios.
  
