@@ -65,12 +65,17 @@ consulta
 **Modificamos e adicionamos funcionalidade as classes:**  
 - [x] Secretaria;  Verifica a disponibilidade e faz o agendamento da consulta do cliente; Seleciona o medico.  
 - [x] RegisterPacient;  Registra, lista e informa o ID do paciente cadastrado.  
-- [x]    
+- [x] Criamos a classe "Consultas" que lista e informa as consultas dos pacientes marcadas   
 
 
 
 No sistema da clinica deverá aplicar um desconto fixo, de 25% na hora do pagamento da consulta, caso o cliente tenha plano de saude.  
 A Escritas de arquivos entra se o paciente vai querer atestado ou não
+
+Em nosso projeto utilizamos o phpMyAdmin que é um banco de dados para registrar e salvar todas classes.
+![image](https://user-images.githubusercontent.com/90154109/145489845-ab7cc544-dc14-45ab-ad93-c3b7ca802354.png)
+
+
 
 ## Authors
 - [Ronaldo Bueno](https://github.com/RonaldoBueno16)
