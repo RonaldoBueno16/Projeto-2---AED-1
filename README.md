@@ -61,6 +61,12 @@ consulta
 - [x] Fizemos um console que o usuario do programa entenda o sistema da clinica
 
 
+09/11 -   
+**Modificamos e adicionamos funcionalidade as classes:**  
+- [x] Secretaria; Verifica a disponibilidade e faz o agendamento da consulta do cliente; Seleciona o medico.  
+- [x] RegisterPacient; Registra, lista e informa o ID do paciente cadastrado.  
+- [x]    
+
 
 
 No sistema da clinica deverá aplicar um desconto fixo, de 25% na hora do pagamento da consulta, caso o cliente tenha plano de saude.  
