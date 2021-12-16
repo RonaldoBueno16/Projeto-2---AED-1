@@ -31,20 +31,10 @@
 - [x] Medico
 - [x] Secretaria
 - [x] Consulta
-
-**Com base nas classes que vamos criar, pretendemos criar os seguintes metodos:** 
-
-menu    
-marcarConsultas  
-listarConsultas  
-removerConsultas  
-prescreverMedicamentos  
-visualizarAgenda  
-consulta  
+- [x] Pacientes
 
 25/11 -  
 **Demos inicio ao projeto, com a criação das seguintes classes:**
-
 
 - [x] Medico
 - [x] Secretaria.    
@@ -52,18 +42,13 @@ consulta
 - [x] Funcionarios   
 - [x] Medico e Secretaria herdam de Funcionarios.
 
-**Criamos também os metodos:**
-**Funcionarios:**  
-- [x] atualizarFuncionarios  
-- [x] RegisterFunc (Registra o funcionario no banco de dados)  
-- [x] getName()  
-
 
 02/11 -  
 **Demos continuidade ao projeto com os seguintes ajustes:**
 - [x] Alteramos e criamos alguns metodos das classes listadas acima.  
 - [x] Demos continuidade no progresso de cada classe já criada.  
 - [x] Fizemos um console que o usuario do programa entenda o sistema da clinica
+- [x] Criação dos metodos da classe Medico e Pacientes.
 
 
 09/11 -   
@@ -80,6 +65,7 @@ consulta
 **Finalização do Projeto:**  
 - [x] Finalizamos todas as classes e fizemos os ajustes necessários  
 - [x] Utilizamos Leitura de arquivos em 'Diagnósticos'  
+- [x] Finalização de todos os metodos de todas as classes
 
 
 ## Authors
