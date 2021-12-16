@@ -79,7 +79,7 @@ consulta
 15/11 -   
 **Finalização do Projeto:**  
 - [x] Finalizamos todas as classes e fizemos os ajustes necessários  
-- [x] Utilizamos Leitura de arquivos  
+- [x] Utilizamos Leitura de arquivos em 'Diagnósticos'  
 
 
 ## Authors
