@@ -105,7 +105,6 @@ namespace Projeto_2___AED_1.src.Services
                     cpf = Convert.ToInt64(dtreader["cpf"]);
                     salario = Convert.ToDouble(dtreader["salario"]);
                     crm_medico = Convert.ToInt32(dtreader["crm"]);
-                    Console.WriteLine(nome);
 
                     medico.AtualizarFuncionario(nome, cpf, salario, matricula);
                     medico.CRM = crm_medico;
@@ -171,6 +170,45 @@ namespace Projeto_2___AED_1.src.Services
                     listaDeRetorno.Add(paciente);
                 }
 
+                this.CloseConnection();
+            }
+
+            return listaDeRetorno;
+        }
+
+        public List<Consulta> CarregarConsultas(List<Paciente> pacientes, List<Medico> medicos)
+        {
+            List<Consulta> listaDeRetorno = new List<Consulta>();
+
+            if (this.OpenConnection())
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM consultas", this.connection);
+                MySqlDataReader dtreader = cmd.ExecuteReader();
+
+                while (dtreader.Read())
+                {
+                    long id_consulta = Convert.ToInt64(dtreader["id"]);
+                    int crm_medico = Convert.ToInt32(dtreader["medicos_crm"]);
+                    int id_paciente = Convert.ToInt32(dtreader["pacientes_matricula"]);
+
+                    foreach(Paciente x in pacientes)
+                    {
+                        if(x.GetID() == id_paciente)
+                        {
+                            foreach(Medico y in medicos)
+                            {
+                                if(y.GetCRM() == crm_medico)
+                                {
+                                    Consulta consulta = new Consulta(x, y, false);
+                                    consulta.SetID(id_consulta);
+
+                                    listaDeRetorno.Add(consulta);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
                 this.CloseConnection();
             }
 

@@ -24,14 +24,27 @@ namespace Projeto_2___AED_1.src.Consultas
             return this.medico;
         }
 
-        public Consulta(Paciente pac, Medico med)
+        public Consulta(Paciente pac, Medico med, bool insert = true)
         {
             DBConnect connection = new DBConnect();
 
             this.medico = med;
             this.paciente = pac;
 
-            this.id = connection.Insert("INSERT INTO consultas(medicos_crm, pacientes_matricula) VALUES("+med.GetCRM()+", "+pac.GetID()+")");
+            if(insert)
+                this.id = connection.Insert("INSERT INTO consultas(medicos_crm, pacientes_matricula) VALUES("+med.GetCRM()+", "+pac.GetID()+")");
+        }
+
+        public void Desmarcar()
+        {
+            DBConnect connection = new DBConnect();
+
+            this.id = connection.Insert("DELETE FROM consultas WHERE id="+this.id);
+        }
+
+        public void SetID(long new_id)
+        {
+            this.id = new_id;
         }
 
         public Paciente GetPaciente()

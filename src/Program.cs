@@ -13,10 +13,15 @@ namespace Projeto_2___AED_1
         static void Main(string[] args)
         {
             DBConnect connect = new DBConnect();
+            Console.WriteLine("Carregando médicos...");
             List<Medico> medicos = connect.CarregarMedicos();
+            Console.WriteLine("Carregando secretárias...");
             List<Secretaria> secretarias = connect.CarregarSecretarias();
+            Console.WriteLine("Carregando pacientes...");
             List<Paciente> pacientes = connect.CarregarPacientes();
-            List<Consulta> consultas = new List<Consulta>();
+            Console.WriteLine("Carregando consultas...");
+            List<Consulta> consultas = connect.CarregarConsultas(pacientes, medicos);
+            Console.Clear();
             
             ReturnERROR:
             Console.WriteLine("==========================================");
@@ -28,7 +33,7 @@ namespace Projeto_2___AED_1
             string optionSTR = Console.ReadLine();
             int option;
             bool isNumber = Int32.TryParse(optionSTR, out option);
-            if (!isNumber)
+            if (!isNumber) //Caso ele digita algo que não seja numérico
             {
                 Console.Clear();
                 goto ReturnERROR;
@@ -44,14 +49,40 @@ namespace Projeto_2___AED_1
                     Console.Clear();
                     goto ReturnERROR;
                 case 2:
+                    VoltarMedico:
                     Console.Clear();
-                    MenuMedico();
+
+                    Console.WriteLine("- Lista dos médicos");
+                    foreach(Medico medico in medicos)
+                        Console.WriteLine("CRM:["+medico.GetCRM()+"] - Nome:["+medico.GetName()+"]");
+                    Console.Write("\nDigite o seu CRM: ");
+                    optionSTR = Console.ReadLine();
+                    isNumber = Int32.TryParse(optionSTR, out option);
+                    if (!isNumber)
+                    {
+                        Console.WriteLine("Você digitou algo inválido!");
+                        Console.ReadKey();
+                        goto VoltarMedico;
+                    }
+
+                    Medico medico_AUX = GetMedico(option);
+                    if (medico_AUX == null)
+                    {
+                        Console.WriteLine("Médico não encontrado!");
+                        Console.ReadKey();
+                        goto VoltarMedico;
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        MenuMedico(medico_AUX, consultas);
+                    }
                     Console.Clear();
                     goto ReturnERROR;
                 case 3:
                     Console.WriteLine("Entrar como administrador");
                     break;
-                default:
+                default: //Caso digite uma opção inválida
                     Console.Clear();
                     goto ReturnERROR;
             }
@@ -62,9 +93,10 @@ namespace Projeto_2___AED_1
                 Console.WriteLine("==========================================");
                 Console.WriteLine("=============[Menu SECRETÁRIA]=============\n");
                 Console.WriteLine("1 - Cadastrar paciente");
-                Console.WriteLine("2 - Agendar consulta");
-                Console.WriteLine("3 - Visualizar agenda");
-                Console.WriteLine("4 - Voltar");
+                Console.WriteLine("2 - Marcar consulta");
+                Console.WriteLine("3 - Desmarcar consulta");
+                Console.WriteLine("4 - Visualizar agenda");
+                Console.WriteLine("5 - Voltar");
                 Console.Write("\nDigite a opção desejada: ");
 
                 optionSTR = Console.ReadLine();
@@ -165,6 +197,7 @@ namespace Projeto_2___AED_1
                             }
                             else
                             {
+                                VoltarMedico:
                                 Console.WriteLine("\n- Marcando consulta para o paciente: " + pacienteEX.GetNome());
                                 foreach(Medico medico in medicos)
                                 {
@@ -178,23 +211,84 @@ namespace Projeto_2___AED_1
                                 {
                                     Console.WriteLine("Você digitou algo inválido!");
                                     Console.ReadKey();
-                                    Console.Clear();
-                                    goto VoltarLista;
+                                    goto VoltarMedico;
                                 }
 
                                 Medico medico_AUX = GetMedico(option);
+                                if(medico_AUX == null)
+                                {
+                                    Console.WriteLine("Médico não encontrado!");
+                                    Console.ReadKey();
+                                    goto VoltarMedico;
+                                }
+                                else
+                                {
+                                    Consulta consulta = new Consulta(pacienteEX, medico_AUX);
+                                    consultas.Add(consulta);
+                                    Console.WriteLine("A consulta do paciente " + pacienteEX.GetNome() + " com o médico " + medico_AUX.GetName() + " foi marcada com sucesso!");
+                                    Console.ReadKey(true);
+                                    Console.Clear();
+                                    goto VoltarLista;
+                                }
+                            }
+                        }
+                    case 3:
+                        {
+                            if(consultas.Count == 0)
+                            {
+                                Console.WriteLine("Não tem nenhuma consulta marcada");
+                                Console.ReadKey(true);
+                                Console.Clear();
+                                goto VoltarLista;
+                            }
 
-                                Consulta consulta = new Consulta(pacienteEX, medico_AUX);
-                                consultas.Add(consulta);
-                                Console.WriteLine("A consulta do paciente "+pacienteEX.GetNome()+" com o médico "+medico_AUX.GetName()+" foi marcada com sucesso!");
+                            Console.WriteLine("\n- Consultas marcadas:");
+                            foreach(Consulta consulta in consultas)
+                            {
+                                Console.WriteLine("ID:["+consulta.GetID()+"] - Médico:["+consulta.GetMedico().GetName()+"] Paciente:["+consulta.GetPaciente().GetNome()+"]");
+                            }
+                            Console.Write("Digite o ID da consulta que você deseja remover: ");
+
+                            optionSTR = Console.ReadLine();
+                            isNumber = Int32.TryParse(optionSTR, out option);
+                            if (!isNumber)
+                            {
+                                Console.WriteLine("Digite apenas número!");
+                                Console.ReadKey();
+                                goto VoltarLista;
+                            }
+
+                            Consulta consultaSelect = null;
+
+                            foreach(Consulta consulta in consultas)
+                            {
+                                if(consulta.GetID() == option)
+                                {
+                                    consultaSelect = consulta;
+                                    break;
+                                }
+                            }
+                            if(consultaSelect == null)
+                            {
+                                Console.WriteLine("Não foi possível encontrar a consulta que você digitou");
+                                Console.ReadKey(true);
+                                Console.Clear();
+                                goto VoltarLista;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Consulta desmarcada com sucesso!");
+                                consultas.Remove(consultaSelect);
+                                consultaSelect.Desmarcar();
+                                consultaSelect = null;
                                 Console.ReadKey(true);
                                 Console.Clear();
                                 goto VoltarLista;
                             }
                         }
-                    case 3: //Listar a agenda dos médicos
+                    case 4: //Listar a agenda dos médicos
                         {
-                            Console.WriteLine("- Médicos disponíveis:");
+                            Console.WriteLine("\n- Médicos disponíveis:");
                             foreach (Medico medico in medicos)
                             {
                                 Console.WriteLine("CRM:[" + medico.GetCRM() + "] - Médico:[" + medico.GetName() + "]");
@@ -239,6 +333,13 @@ namespace Projeto_2___AED_1
                                 goto VoltarLista;
                             }
                         }
+                    case 5:
+                        break;
+                    default:
+                        {
+                            Console.Clear();
+                            goto VoltarLista;
+                        }
                 }
             }
 
@@ -278,8 +379,12 @@ namespace Projeto_2___AED_1
                 return false;
         }
 
-        private static void MenuMedico()
+        private static void MenuMedico(Medico medico, List<Consulta> consultas)
         {
+            Console.WriteLine("Seja bem vindo, doutor " + medico.GetName() + "!");
+            Console.ReadKey();
+            Console.Clear();
+
             ReturnERROR:
             Console.WriteLine("==========================================");
             Console.WriteLine("==============[Menu MÉDICO]===============\n");
@@ -294,6 +399,77 @@ namespace Projeto_2___AED_1
             {
                 Console.Clear();
                 goto ReturnERROR;
+            }
+            
+            switch(option)
+            {
+                case 1:
+                    {
+                        Console.WriteLine("\n- Minhas agenda: ");
+                        int count = 0;
+                        foreach(Consulta consulta in consultas)
+                        {
+                            if(consulta.GetMedico() == medico)
+                            {
+                                Console.WriteLine("Número " + consulta.GetID() + ": " + consulta.GetPaciente().GetNome());
+                                count++;
+                            }
+                        }
+                        if(count == 0)
+                        {
+                            Console.WriteLine("Você não tem nenhuma consulta marcada!");
+                            Console.ReadKey(true);
+                            Console.Clear();
+                            goto ReturnERROR;
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nVocê deseja atender alguma das consultas acima? (Y/N)");
+
+                            if(Console.ReadKey(true).Key == ConsoleKey.Y)
+                            {
+                                ReturnConsulta:
+                                Console.Write("\nDigite o número da consulta que você deseja atender: ");
+
+                                optionSTR = Console.ReadLine();
+                                isNumber = Int32.TryParse(optionSTR, out option);
+                                if (!isNumber)
+                                {
+                                    Console.Clear();
+                                    goto ReturnConsulta;
+                                }
+
+                                bool valid = false;
+                                foreach(Consulta consulta in consultas)
+                                {
+                                    if(consulta.GetID() == option && consulta.GetMedico() == medico)
+                                    {
+                                        valid = true;
+                                        break;
+                                    }
+                                }
+                                if(!valid)
+                                {
+                                    Console.WriteLine("Consulta não encontrada");
+                                    Console.ReadKey(true);
+                                    goto ReturnConsulta;
+                                }
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                goto ReturnERROR;
+                            }
+                        }
+                        goto ReturnERROR;
+                    }
+                case 2:
+                    {
+                        break;
+                    }
+                default:
+                    Console.Clear();
+                    goto ReturnERROR;
             }
         }
     }
