@@ -66,6 +66,11 @@
 - [x] Finalizamos todas as classes e fizemos os ajustes necessários  
 - [x] Utilizamos Leitura de arquivos em 'Diagnósticos'  
 - [x] Finalização de todos os metodos de todas as classes
+- [x] Link do video postado no YOUTUBE:    
+
+
+
+https://www.youtube.com/watch?v=568nkh6GC9g  
 
 
 ## Authors
