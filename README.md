@@ -76,11 +76,10 @@ consulta
 - [x] Classe 'Paciente' finalizada      
 
 
-
-
-No sistema da clinica deverá aplicar um desconto fixo, de 25% na hora do pagamento da consulta, caso o cliente tenha plano de saude.  
-A Escritas de arquivos entra se o paciente vai querer atestado ou não
-
+15/11 -   
+**Finalização do Projeto:**  
+- [x] Finalizamos todas as classes e fizemos os ajustes necessários  
+- [x] Utilizamos Leitura de arquivos  
 
 
 ## Authors
