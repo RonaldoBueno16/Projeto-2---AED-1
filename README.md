@@ -1,4 +1,4 @@
-# Clinica 
+# Clínica 
   
 **Projeto dedicado a disciplina AED 1 Projeto 2 - O projeto deverá seguir os criterios de avaliação**
   
