@@ -367,8 +367,6 @@ namespace Projeto_2___AED_1
                 return null;
             }
         }
-        
-
         private static bool TentarNovamente(string message)
         {
             Console.Write(message);
@@ -424,7 +422,7 @@ namespace Projeto_2___AED_1
                         }
                         else
                         {
-                            Console.WriteLine("\nVocê deseja atender alguma das consultas acima? (Y/N)");
+                            Console.Write("\nVocê deseja atender alguma das consultas acima? (Y/N)");
 
                             if(Console.ReadKey(true).Key == ConsoleKey.Y)
                             {
@@ -434,26 +432,28 @@ namespace Projeto_2___AED_1
                                 optionSTR = Console.ReadLine();
                                 isNumber = Int32.TryParse(optionSTR, out option);
                                 if (!isNumber)
-                                {
-                                    Console.Clear();
                                     goto ReturnConsulta;
-                                }
 
-                                bool valid = false;
+                                Consulta consultaselect = null;
                                 foreach(Consulta consulta in consultas)
                                 {
                                     if(consulta.GetID() == option && consulta.GetMedico() == medico)
                                     {
-                                        valid = true;
+                                        consultaselect = consulta;
                                         break;
                                     }
                                 }
-                                if(!valid)
+                                if(consultaselect == null)
                                 {
-                                    Console.WriteLine("Consulta não encontrada");
+                                    Console.WriteLine("O número da consulta não foi encontrado.");
                                     Console.ReadKey(true);
                                     goto ReturnConsulta;
                                 }
+
+                                consultaselect.IniciarConsulta();
+
+                                consultas.Remove(consultaselect);
+                                consultaselect = null;
                             }
                             else
                             {

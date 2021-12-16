@@ -82,6 +82,21 @@ namespace Projeto_2___AED_1.src.Services
             return -1;
         }
 
+        public long Delete(string query)
+        {
+            if (this.OpenConnection())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, this.connection);
+
+                cmd.ExecuteNonQuery();
+                long id = cmd.LastInsertedId;
+
+                this.CloseConnection();
+                return id;
+            }
+            return -1;
+        }
+
         public List<Medico> CarregarMedicos()
         {
             List<Medico> listaDeRetorno = new List<Medico>();
