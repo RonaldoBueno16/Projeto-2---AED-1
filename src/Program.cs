@@ -380,7 +380,7 @@ namespace Projeto_2___AED_1
         private static void MenuMedico(Medico medico, List<Consulta> consultas)
         {
             Console.WriteLine("Seja bem vindo, doutor " + medico.GetName() + "!");
-            Console.ReadKey();
+            Console.ReadKey(true);
             Console.Clear();
 
             ReturnERROR:
